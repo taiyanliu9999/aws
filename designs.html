@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top 10 Website Designs 2026 | Design Inspiration</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .design-hero {
+      padding: 80px 0 40px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(255, 0, 255, 0.05));
+    }
+    
+    .design-hero h1 {
+      font-size: clamp(2rem, 6vw, 4rem);
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta), var(--accent-yellow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .design-hero p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .design-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 30px;
+      padding: 40px 0;
+    }
+    
+    .design-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .design-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--accent-cyan);
+      box-shadow: 0 20px 40px rgba(0, 240, 255, 0.1);
+    }
+    
+    .design-preview {
+      height: 250px;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .design-preview::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, var(--accent-cyan), transparent 30%);
+      animation: rotate 10s linear infinite;
+      opacity: 0.1;
+    }
+    
+    .design-preview-content {
+      text-align: center;
+      z-index: 1;
+      padding: 20px;
+    }
+    
+    .design-preview-content .icon {
+      font-size: 4rem;
+      margin-bottom: 15px;
+    }
+    
+    .design-preview-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+    
+    .design-preview-content span {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+    }
+    
+    .design-info {
+      padding: 25px;
+    }
+    
+    .design-info h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+    
+    .design-info .category {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      border-radius: 20px;
+      margin-bottom: 15px;
+    }
+    
+    .design-info p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    
+    .design-analysis {
+      background: rgba(255, 255, 255, 0.02);
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    
+    .design-analysis h4 {
+      font-size: 0.85rem;
+      color: var(--accent-yellow);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    
+    .design-analysis ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .design-analysis li {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      padding: 5px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+    
+    .design-analysis li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent-cyan);
+    }
+    
+    .design-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta));
+      color: var(--bg-dark);
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: transform 0.2s ease;
+    }
+    
+    .design-link:hover {
+      transform: scale(1.05);
+    }
+    
+    .section-header {
+      text-align: center;
+      padding: 60px 0 40px;
+    }
+    
+    .section-header h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+    
+    .section-header p {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    @media (max-width: 768px) {
+      .design-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="index.html" class="logo">▸ Blog_Demo</a>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="designs.html" class="active">Designs</a></li>
+          <li><a href="admin.html">Admin</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="design-hero">
+      <div class="container">
+        <h1>TOP 10 WEBSITE DESIGNS 2026</h1>
+        <p>A curated collection of the most inspiring and innovative website designs of 2026. From Awwwards winners to cutting-edge UX experiments.</p>
+      </div>
+    </section>
+
+    <section class="section-header">
+      <div class="container">
+        <h2 class="section-title">Award-Winning Designs</h2>
+        <p>Selected from Awwwards, FWA, and leading design platforms</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="design-grid">
+        <!-- Design 1 -->
+        <article class="design-card">
+          <div class="design-preview">
+            <div class="design-preview-content">
+              <div class="icon">✨</div>
+              <h3>Warsze</h3>
+              <span>Awwwards Best Nonprofit</span>
+            </div>
+          </div>
+          <div class="design-info">
+            <span class="category">Nonprofit / Charity</span>
+            <h3>Warsze - Nonprofit Excellence</h3>
+            <p>A stunning example of nonprofit website design that combines emotional storytelling with modern aesthetics.</p>
+            <div class="design-analysis">
+              <h4>Design Analysis</h4>
+              <ul>
+                <li>Compelling visual hierarchy</li>
+                <li>Emotional connection through imagery</li>
+                <li>Clean typography and layout</li>
+                <li>Accessible color scheme</li>
+              </ul>
+            </div>
+            <a href="https://weblium.com/blog/20-best-websites-best-website-designs-for-your-inspiration/" target="_blank" class="design-link">
+              Visit Site →
+            </a>
+          </div>
+        </article>
+
+        <!-- Design 2 -->
+        <article class="design-card">
+          <div class="design-preview">
+            <div class="design-preview-content">
+              <div class="icon">🍽️</div>
+              <h3>Nannina</h3>
+              <span>Awwwards Restaurant Winner</span>
+            </div>
+          </div>
+          <div class="design-info">
+            <span class="category">Restaurant / Hospitality</span>
+            <h3>Nannina - Culinary Experience</h3>
+            <p>An award-winning restaurant website that perfectly captures the essence of fine dining through immersive web design.</p>
+            <div class="design-analysis">
+              <h4>Design Analysis</h4>
+              <ul>
+                <li>Appetizing visual presentation</li>
+                <li>Seamless menu navigation</li>
+                <li>Atmospheric imagery</li>
+                <li>Mobile-optimized experience</li>
+              </ul>
+            </div>
+            <a href="https://weblium.com/blog/20-best-websites-best-website-designs-for-your-inspiration/" target="_blank" class="design-link">
+              Visit Site →
+            </a>
+          </div>
+        </article>
+
+        <!-- Design 3 -->
+        <article class="design-card">
+          <div class="design-preview">
+            <div class="design-preview-content">
+              <div class="icon">🎓</div>
+              <h3>Inra</h3>
+              <span>Modern Education Design</span>
+            </div>
+          </div>
+          <div class="design-info">
+            <span class="category">Education / Learning</span>
+            <h3>Inra - Future of EdTech</h3>
+            <p>A modern web design for educational platforms that proves learning can be beautiful and engaging.</p>
+            <div class="design-analysis">
+              <h4>Design Analysis</h4>
+              <ul>
+                <li>Intuitive user journey</li>
+                <li>Focus on content readability</li>
+                <li>Interactive learning elements</li>
+                <li>Trust-building design</li>
+              </ul>
+            </div>
+            <a href="https://weblium.com/blog/20-best-websites-best-website-designs-for-your-inspiration/" target="_blank" class="design-link">
+              Visit Site →
+            </a>
+          </div>
+        </article>
+
+        <!-- Design 4 -->
+        <article class="design-card">
+          <div class="design-preview">
+            <div class="design-preview-content">
+              <div class="icon">💳</div>
+              <h3>Jeton</h3>
+              <span>Awwwards SOTD + Fintech</span>
+            </div>
+          </div>
+          <div class="design-info">
+            <span class="category">Fintech / Finance</span>
+            <h3>Jeton - Seamless UX</h3>
+            <p>An award-winning fintech site demonstrating how financial services can have exceptional user experience.</p>
+            <div class="design-analysis">
+              <h4>Design Analysis</h4>
+              <ul>
+                <li>Smooth 3D motion effects</li>
+                <li>Trust through design</li>
+                <li>Clear data visualization</li>
+                <li>Micro-interactions</li>
+              </ul>
+            </div>
+            <a href="https://www.wavespace.agency/blog/best-website-design-examples" target="_blank" class="design-link">
+              Visit Site →
+            </a>
+          </div>
+        </article>
+
+        <!-- Design 5 -->
+        <article class="design-card">
+          <div class="design-preview">
+            <div class="design-preview-content">
+              <div class="icon">🎨</div>
+              <h3>Lusion</h3>
+              <span>Awwwards Site of the Month</span>
+            </div>
+          </div>
+          <div class="design-info">
+            <span class="category">Creative Studio</span>
+            <h3>Lusion - Creative Excellence</h3>
+            <p>A creative studio portfolio that pushes the boundaries of web design with innovative animations.</p>
+            <div class="design-analysis">
+              <h4>Design Analysis</h4>
+              <ul>
+                <li>Bold visual experiments</li>
+                <li>Immersive animations</li>
+                <li>Unique brand identity</li>
+                <li>Technical mastery</li>
+              </ul>
+            </div>
+            <a href="https://www.wavespace.agency/blog/best-website-design-examples" target="_blank" class="design-link">
+              Visit Site →
+            </a>
+          </div>
+        </article>
+
+        <!-- Design 6 -->
+        <article class="design-card">
+          <div class="design-preview">
+            <div class="design-preview-content">
+              <div class="icon">🥚</div>
+              <h3>B-EGG Farm</h3>
+              <span>Awwwards SOTD + FWA</span>
+            </div>
+          </div>
+          <div class="design-info">
+            <span class="category">E-commerce</span>
+            <h3>B-EGG Farm - E-commerce Innovation</h3>
+            <p>An e-commerce site that proves even simple products can have extraordinary web presence.</p>
+            <div class="design-analysis">
+              <h4>Design Analysis</h4>
+              <ul>
+                <li>Product-focused layout</li>
+                <li>Engaging storytelling</li>
+                <li>Clear CTAs</li>
+                <li>Cross-device consistency</li>
+              </ul>
+            </div>
+            <a href="https://www.wavespace.agency/blog/best-website-design-examples" target="_blank" class="design-link">
+              Visit Site →
+            </a>
+          </div>
+        </article>
+
+        <!-- Design 7 -->
+        <article class="design-card">
+          <div class="design-preview">
+            <div class="design-preview-content">
+              <div class="icon">💄</div>
+              <h3>TONYMOLY</h3>
+              <span>Modern Beauty Brand</span>
+            </div>
+          </div>
+          <div class="design-info">
+            <span class="category">Beauty / E-commerce</span>
+            <h3>TONYMOLY - Fresh & Modern</h3>
+            <p>A beauty brand website that pairs clean white backgrounds with striking blue accents.</p>
+            <div class="design-analysis">
+              <h4>Design Analysis</h4>
+              <ul>
+                <li>Crisp color palette</li>
+                <li>Product-highlighting layout</li>
+                <li>Energetic visual accents</li>
+                <li>Modern feel</li>
+              </ul>
+            </div>
+            <a href="https://www.designmantic.com/blog/design-forecast-2026/" target="_blank" class="design-link">
+              Visit Site →
+            </a>
+          </div>
+        </article>
+
+        <!-- Design 8 -->
+        <article class="design-card">
+          <div class="design-preview">
+            <div class="design-preview-content">
+              <div class="icon">🛠️</div>
+              <h3>Baunfire</h3>
+              <span>Silicon Valley Agency</span>
+            </div>
+          </div>
+          <div class="design-info">
+            <span class="category">Digital Agency</span>
+            <h3>Baunfire - Research-Driven Design</h3>
+            <p>A Silicon Valley digital agency specializing in research-driven web design and UX/UI.</p>
+            <div class="design-analysis">
+              <h4>Design Analysis</h4>
+              <ul>
+                <li>User research focused</li>
+                <li>Strategic layout</li>
+                <li>Professional aesthetic</li>
+                <li>Clear value proposition</li>
+              </ul>
+            </div>
+            <a href="https://finance.yahoo.com/news/designrush-reveals-12-best-design-130000944.html" target="_blank" class="design-link">
+              Visit Site →
+            </a>
+          </div>
+        </article>
+
+        <!-- Design 9 -->
+        <article class="design-card">
+          <div class="design-preview">
+            <div class="design-preview-content">
+              <div class="icon">⚡</div>
+              <h3>CodeTheorem</h3>
+              <span>SaaS Design Expert</span>
+            </div>
+          </div>
+          <div class="design-info">
+            <span class="category">SaaS / Startup</span>
+            <h3>CodeTheorem - Clean & Developer-Friendly</h3>
+            <p>A design agency that strips things down to what matters, creating effortless user interfaces.</p>
+            <div class="design-analysis">
+              <h4>Design Analysis</h4>
+              <ul>
+                <li>Clean grids and hierarchy</li>
+                <li>Intuitive complexity management</li>
+                <li>Developer-friendly output</li>
+                <li>Startup-focused approach</li>
+              </ul>
+            </div>
+            <a href="https://www.wavespace.agency/blog/best-saas-website-design-agency" target="_blank" class="design-link">
+              Visit Site →
+            </a>
+          </div>
+        </article>
+
+        <!-- Design 10 -->
+        <article class="design-card">
+          <div class="design-preview">
+            <div class="design-preview-content">
+              <div class="icon">🏆</div>
+              <h3>Awwwards</h3>
+              <span>Web Design Oscars</span>
+            </div>
+          </div>
+          <div class="design-info">
+            <span class="category">Design Gallery</span>
+            <h3>Awwwards - The Oscars of Web Design</h3>
+            <p>The premier platform for recognizing outstanding web design. Essential for inspiration and trends.</p>
+            <div class="design-analysis">
+              <h4>Design Analysis</h4>
+              <ul>
+                <li>Curated excellence</li>
+                <li>Community recognition</li>
+                <li>Trend setting</li>
+                <li>Global perspective</li>
+              </ul>
+            </div>
+            <a href="https://awwwards.com/" target="_blank" class="design-link">
+              Visit Site →
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <section class="section-header" style="margin-top: 60px;">
+      <div class="container">
+        <h2 class="section-title">Design Trends 2026</h2>
+        <p>Key trends defining modern web design</p>
+      </div>
+    </section>
+
+    <div class="container" style="padding-bottom: 80px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+        <div style="background: var(--bg-card); padding: 30px; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+          <h3 style="color: var(--accent-cyan); margin-bottom: 15px;">🎨 AI-Driven Interfaces</h3>
+          <p style="color: var(--text-secondary);">Personalized experiences powered by artificial intelligence, adaptive layouts, and intelligent content recommendations.</p>
+        </div>
+        <div style="background: var(--bg-card); padding: 30px; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+          <h3 style="color: var(--accent-magenta); margin-bottom: 15px;">🌐 Immersive Experiences</h3>
+          <p style="color: var(--text-secondary);">3D motion, micro-interactions, and spatial design creating engaging user journeys.</p>
+        </div>
+        <div style="background: var(--bg-card); padding: 30px; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+          <h3 style="color: var(--accent-yellow); margin-bottom: 15px;">📱 Mobile-First Everything</h3>
+          <p style="color: var(--text-secondary);">Responsive design that goes beyond rescaling to offer optimal experiences on every device.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Blog_Demo // Design Inspiration Collection</p>
+    </div>
+  </footer>
+</body>
+</html>
