@@ -1,0 +1,32 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "Getting Started with Web Development",
+      "author": "Jane Doe",
+      "content": "Web development is an exciting field that combines creativity with technical skills. In this article, we'll explore the basics of HTML, CSS, and JavaScript, the three fundamental technologies that power the web. HTML provides the structure, CSS adds styling, and JavaScript brings interactivity to your websites.",
+      "date": "2026-01-15T10:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "title": "The Future of Responsive Design",
+      "author": "John Smith",
+      "content": "Responsive design is more important than ever as users access websites on a wide variety of devices. From smartphones to large desktop monitors, your site should look great everywhere. We'll discuss the latest techniques and best practices for creating truly responsive layouts.",
+      "date": "2026-01-20T14:30:00.000Z"
+    },
+    {
+      "id": "3",
+      "title": "Why Vanilla JavaScript is Making a Comeback",
+      "author": "Alex Johnson",
+      "content": "While frameworks like React and Vue have dominated recent years, vanilla JavaScript is experiencing a resurgence. With modern browser APIs and improved JavaScript features, many developers are returning to plain JS for simpler, more maintainable projects.",
+      "date": "2026-01-25T09:15:00.000Z"
+    },
+    {
+      "id": "4",
+      "title": "CSS Grid: The Ultimate Layout System",
+      "author": "Sarah Wilson",
+      "content": "CSS Grid has revolutionized how we approach web layouts. Unlike Flexbox, which is one-dimensional, Grid allows us to create complex two-dimensional layouts with ease. Learn how to master this powerful tool in our comprehensive guide.",
+      "date": "2026-01-28T16:45:00.000Z"
+    }
+  ]
+}
