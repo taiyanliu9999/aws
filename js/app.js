@@ -44,9 +44,13 @@ if (document.getElementById('posts-container')) {
   loadPosts().then(data => {
     const container = document.getElementById('posts-container');
     if (data.posts && data.posts.length > 0) {
-      container.innerHTML = data.posts.map((post, index) => `
-        <article class="post-card" style="animation: fadeInUp 0.5s ease ${index * 0.1}s both;">
-          <div class="post-image">
+      container.innerHTML = data.posts.map((post, index) => {
+        const link = post.externalLink || '#';
+        const isExternal = post.externalLink ? 'target="_blank"' : '';
+        const badge = post.featured ? '<span style="background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta)); padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; margin-left: 10px;">⭐ FEATURED</span>' : '';
+        return `
+        <article class="post-card" style="animation: fadeInUp 0.5s ease ${index * 0.1}s both; ${post.featured ? 'border: 1px solid var(--accent-cyan);' : ''}">
+          <div class="post-image" style="${post.featured ? 'background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta));' : ''}">
             <span class="post-image-icon">${post.title.charAt(0)}</span>
           </div>
           <div class="post-content">
@@ -54,12 +58,12 @@ if (document.getElementById('posts-container')) {
               <span class="post-author">@${post.author.replace(/\s+/g, '_').toLowerCase()}</span>
               <span class="post-date">${formatDate(post.date)}</span>
             </div>
-            <h2 class="post-title">${post.title}</h2>
+            <h2 class="post-title">${post.title}${badge}</h2>
             <p class="post-excerpt">${truncateText(post.content, 150)}</p>
-            <a href="#" class="read-more">Read Article →</a>
+            <a href="${link}" ${isExternal} class="read-more">${post.externalLink ? 'View Design →' : 'Read Article →'}</a>
           </div>
         </article>
-      `).join('');
+      `}).join('');
     } else {
       container.innerHTML = '<p style="text-align: center; color: #a0a0b0; font-family: var(--font-mono);">// No posts available in database</p>';
     }
