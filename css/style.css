@@ -1,24 +1,38 @@
 /* 
- * Retro-Futuristic Brutalist Design
- * Avoids generic AI aesthetics with bold, memorable design
+ * Advanced Interactive Design v2.0
+ * Based on provided UX/UI Interaction Guidelines
+ * Enhanced with micro-interactions, loading feedback, and multimodal sensory design
  */
 
+/* ============================================
+   1. CSS Custom Properties (Design Tokens)
+   ============================================ */
 :root {
-  /* Color Palette - Cyberpunk inspired */
+  /* Color Palette - Enhanced Cyberpunk */
   --bg-dark: #0a0a0f;
   --bg-card: #12121a;
+  --bg-card-hover: #1a1a24;
   --text-primary: #f0f0f5;
   --text-secondary: #a0a0b0;
-  --accent-cyan: #00f0ff;
-  --accent-magenta: #ff00ff;
-  --accent-yellow: #f0ff00;
-  --accent-green: #00ff88;
+  --text-tertiary: #606070;
+  
+  /* Accent Colors - 631 Rule */
+  --color-primary: #6366f1;   /* 60% - 主色 */
+  --color-secondary: #22d3ee; /* 30% - 辅助色 */
+  --color-accent: #f472b6;    /* 10% - 点缀色 */
+  
+  /* Legacy Accent Colors (for backward compatibility) */
+  --accent-cyan: var(--color-secondary);
+  --accent-magenta: #a855f7;
+  --accent-yellow: #facc15;
+  --accent-green: #34d399;
   
   /* Typography */
   --font-display: 'Space Grotesk', 'Courier New', monospace;
   --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   
-  /* Spacing */
+  /* Spacing Scale */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 1.5rem;
@@ -26,13 +40,30 @@
   --space-xl: 3rem;
   --space-2xl: 5rem;
   
-  /* Animation */
-  --transition-fast: 150ms ease;
-  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* Animation Curves */
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-snappy: cubic-bezier(0.4, 0, 0.2, 1) fast(1);
+  
+  /* Shadows & Glows */
+  --shadow-glow-cyan: 0 0 30px rgba(34, 211, 238, 0.3);
+  --shadow-glow-magenta: 0 0 30px rgba(168, 85, 247, 0.3);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.4);
+  
+  /* Z-Index Layers */
+  --z-bg: -1;
+  --z-base: 0;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-modal: 100;
+  --z-tooltip: 200;
+  --z-overlay: 300;
 }
 
-/* Reset & Base */
+/* ============================================
+   2. Reset & Base Styles
+   ============================================ */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -41,6 +72,7 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
 }
 
 body {
@@ -50,9 +82,12 @@ body {
   line-height: 1.7;
   min-height: 100vh;
   background-image: 
-    radial-gradient(ellipse at 20% 20%, rgba(0, 240, 255, 0.03) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 80%, rgba(255, 0, 255, 0.03) 0%, transparent 50%);
+    radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
   overflow-x: hidden;
+  /* Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Noise Texture Overlay */
@@ -248,15 +283,26 @@ main {
   margin-top: var(--space-lg);
 }
 
-/* Post Card - Brutalist Design */
+/* ============================================
+   4. Post Cards with 3D Micro-interactions
+   ============================================ */
+
+/* Base Post Card */
 .post-card {
   background: var(--bg-card);
   border: 1px solid rgba(255, 255, 255, 0.05);
   position: relative;
   overflow: hidden;
-  transition: transform var(--transition-base), border-color var(--transition-base);
+  transition: 
+    transform var(--ease-smooth) 0.3s,
+    border-color var(--ease-smooth) 0.3s,
+    box-shadow var(--ease-smooth) 0.3s;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  cursor: pointer;
 }
 
+/* Top Accent Line */
 .post-card::before {
   content: '';
   position: absolute;
@@ -267,21 +313,65 @@ main {
   background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta), var(--accent-yellow));
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform var(--transition-base);
+  transition: transform var(--ease-smooth) 0.3s;
 }
 
+/* ============================================
+   4.1 3D Tilt Effect (3D Perspective Tilt)
+   ============================================ */
 .post-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(0, 240, 255, 0.3);
+  transform: translateY(-8px) rotateX(2deg) rotateY(1deg);
+  border-color: rgba(34, 211, 238, 0.3);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(34, 211, 238, 0.1);
 }
 
 .post-card:hover::before {
   transform: scaleX(1);
 }
 
+/* ============================================
+   4.2 Ambient Light Follow Effect
+   ============================================ */
+.post-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(34, 211, 238, 0.1),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity var(--ease-smooth) 0.3s;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.post-card:hover::after {
+  opacity: 1;
+}
+
+/* ============================================
+   4.3 Depth of Field Focus Effect
+   ============================================ */
+.posts-grid:has(.post-card:hover) .post-card:not(:hover) {
+  filter: blur(2px) grayscale(30%);
+  transform: scale(0.98);
+  opacity: 0.7;
+}
+
+.posts-grid:has(.post-card:hover) .post-card:not(:hover)::after {
+  opacity: 0;
+}
+
 .post-image {
   height: 180px;
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -289,14 +379,15 @@ main {
   overflow: hidden;
 }
 
-.post-image::after {
+/* Rotating Gradient Border */
+.post-image::before {
   content: '';
   position: absolute;
   width: 200%;
   height: 200%;
-  background: conic-gradient(from 0deg, transparent, var(--accent-cyan), transparent 30%);
+  background: conic-gradient(from 0deg, transparent, var(--accent-cyan), var(--accent-magenta), transparent 30%);
   animation: rotate 8s linear infinite;
-  opacity: 0.1;
+  opacity: 0.15;
 }
 
 @keyframes rotate {
@@ -589,17 +680,80 @@ footer p {
   background: linear-gradient(var(--accent-magenta), var(--accent-yellow));
 }
 
-/* Animations */
+/* ============================================
+   5. Loading Skeleton with Shimmer Effect
+   ============================================ */
+
+/* Skeleton Base */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-card) 0%,
+    var(--bg-card-hover) 50%,
+    var(--bg-card) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Skeleton Variants */
+.skeleton-text {
+  height: 1rem;
+  margin-bottom: var(--space-xs);
+}
+
+.skeleton-title {
+  height: 1.5rem;
+  width: 60%;
+  margin-bottom: var(--space-sm);
+}
+
+.skeleton-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.skeleton-image {
+  height: 180px;
+  width: 100%;
+}
+
+/* ============================================
+   5.1 Staggered Entrance Animation
+   ============================================ */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(30px) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
+
+.post-card {
+  animation: fadeInUp 0.6s var(--ease-smooth) backwards;
+}
+
+/* Stagger Delays - automatically applied via JS or nth-child */
+.post-card:nth-child(1) { animation-delay: 0ms; }
+.post-card:nth-child(2) { animation-delay: 100ms; }
+.post-card:nth-child(3) { animation-delay: 200ms; }
+.post-card:nth-child(4) { animation-delay: 300ms; }
+.post-card:nth-child(5) { animation-delay: 400ms; }
+.post-card:nth-child(6) { animation-delay: 500ms; }
 
 @keyframes glitch {
   0%, 90%, 100% {

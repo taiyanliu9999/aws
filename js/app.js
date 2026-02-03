@@ -1,6 +1,48 @@
 const API_BASE = 'data';
 
+// ============================================
+// 1. Mouse Tracking for Ambient Light Effect
+// ============================================
+document.addEventListener('mousemove', (e) => {
+  const cards = document.querySelectorAll('.post-card');
+  cards.forEach(card => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty('--mouse-x', `${x}px`);
+    card.style.setProperty('--mouse-y', `${y}px`);
+  });
+});
+
+// ============================================
+// 2. Skeleton Loading System
+// ============================================
+function createSkeletonCard() {
+  return `
+    <article class="post-card skeleton-card">
+      <div class="post-image skeleton skeleton-image"></div>
+      <div class="post-content">
+        <div class="post-meta">
+          <div class="skeleton skeleton-avatar"></div>
+          <div class="skeleton skeleton-text" style="width: 40%;"></div>
+        </div>
+        <div class="skeleton skeleton-title"></div>
+        <div class="skeleton skeleton-text"></div>
+        <div class="skeleton skeleton-text" style="width: 70%;"></div>
+        <div class="skeleton" style="width: 120px; height: 40px; border-radius: 4px;"></div>
+      </div>
+    </article>
+  `;
+}
+
 async function loadPosts() {
+  const container = document.getElementById('posts-container');
+  if (!container) return [];
+  
+  // Show skeleton loading state
+  const skeletonCount = 6;
+  container.innerHTML = Array(skeletonCount).fill(createSkeletonCard()).join('');
+  
   try {
     const response = await fetch(`${API_BASE}/posts.json`);
     const data = await response.json();
@@ -44,13 +86,9 @@ if (document.getElementById('posts-container')) {
   loadPosts().then(data => {
     const container = document.getElementById('posts-container');
     if (data.posts && data.posts.length > 0) {
-      container.innerHTML = data.posts.map((post, index) => {
-        const link = post.externalLink || '#';
-        const isExternal = post.externalLink ? 'target="_blank"' : '';
-        const badge = post.featured ? '<span style="background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta)); padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; margin-left: 10px;">⭐ FEATURED</span>' : '';
-        return `
-        <article class="post-card" style="animation: fadeInUp 0.5s ease ${index * 0.1}s both; ${post.featured ? 'border: 1px solid var(--accent-cyan);' : ''}">
-          <div class="post-image" style="${post.featured ? 'background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta));' : ''}">
+      container.innerHTML = data.posts.map((post, index) => `
+        <article class="post-card" style="animation: fadeInUp 0.5s ease ${index * 0.1}s both;">
+          <div class="post-image">
             <span class="post-image-icon">${post.title.charAt(0)}</span>
           </div>
           <div class="post-content">
@@ -58,12 +96,12 @@ if (document.getElementById('posts-container')) {
               <span class="post-author">@${post.author.replace(/\s+/g, '_').toLowerCase()}</span>
               <span class="post-date">${formatDate(post.date)}</span>
             </div>
-            <h2 class="post-title">${post.title}${badge}</h2>
+            <h2 class="post-title">${post.title}</h2>
             <p class="post-excerpt">${truncateText(post.content, 150)}</p>
-            <a href="${link}" ${isExternal} class="read-more">${post.externalLink ? 'View Design →' : 'Read Article →'}</a>
+            <a href="#" class="read-more">Read Article →</a>
           </div>
         </article>
-      `}).join('');
+      `).join('');
     } else {
       container.innerHTML = '<p style="text-align: center; color: #a0a0b0; font-family: var(--font-mono);">// No posts available in database</p>';
     }
@@ -73,9 +111,14 @@ if (document.getElementById('posts-container')) {
 if (document.getElementById('post-form')) {
   const form = document.getElementById('post-form');
   const successMessage = document.getElementById('success-message');
+  const submitBtn = form.querySelector('.btn-submit');
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    
+    // Button morphing: Loading state
+    submitBtn.classList.add('loading');
+    submitBtn.innerHTML = '<span style="opacity: 0;">Submitting...</span>';
     
     const post = {
       id: Date.now().toString(),
@@ -86,14 +129,31 @@ if (document.getElementById('post-form')) {
     };
 
     const result = await savePost(post);
+    
     if (result) {
+      // Button morphing: Success state
+      submitBtn.classList.remove('loading');
+      submitBtn.classList.add('success');
+      submitBtn.innerHTML = '✓ Published';
+      
       successMessage.style.display = 'block';
       form.reset();
+      
+      // Reset button after 3 seconds
       setTimeout(() => {
-        successMessage.style.display = 'none';
+        submitBtn.classList.remove('success');
+        submitBtn.innerHTML = 'Publish Article';
       }, 3000);
     } else {
-      alert('Failed to save post. Please try again.');
+      // Error state
+      submitBtn.classList.remove('loading');
+      submitBtn.style.background = 'linear-gradient(135deg, #ef4444 0%, #f87171 100%)';
+      submitBtn.innerHTML = '✗ Failed';
+      
+      setTimeout(() => {
+        submitBtn.style.background = '';
+        submitBtn.innerHTML = 'Publish Article';
+      }, 2000);
     }
   });
 }
